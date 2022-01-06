@@ -1,8 +1,8 @@
 <template>
   <div class="calc">
     <!-- <h1>{{ msg }}</h1> -->
-    <input type="number" v-model="string1">
-    <input type="number" v-model="string2">
+    <input name="operand1" data-test="operand1" type="number" placeholder="0" v-model="string1">
+    <input name="operand2" type="number" placeholder="0" v-model="string2">
     = {{result}}
     <br>
     <br>
@@ -17,18 +17,19 @@
     <br>
     <br>
     <br>
-    <input type="checkbox" :checked="checked" @click="isChecked">Экранная клавиатура
+    <div><label for="check"><input id="check" type="checkbox" v-model="checked">Экранная клавиатура</label></div>
     <br>
     <br>
     <div class="keyboard" v-show="checked">
       <br>
-       <button v-for="number in numbers" :key="number" @click="symbolChange(number)">
+       <button v-for="(number, index) in numbers" :key="index" @click="symbolChange(number)">
        {{number}}
       </button>
       <button @click="remove">←</button>
       <br>
+      <label for="one">
       <input type="radio" id="one" value="first" v-model="picked">
-      <label for="one">Операнд 1</label>
+      Операнд 1</label>
       <input type="radio" id="two" value="second" v-model="picked">
       <label for="two">Операнд 2</label>
     </div>
@@ -47,9 +48,10 @@ export default {
       string2: '',
       res0: false,
       operands: ['+', '-', '*', '/', 'xⁿ'],
-      checked: true,
+      checked: false,
       numbers: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-      picked: 'Первый'
+      picked: 'first',
+      test: ''
     }
   },
   methods: {
@@ -88,7 +90,7 @@ export default {
           this.string1 += symbol
           break
         case 'second':
-          this.string2 += symbol
+          this.string2 = symbol + this.string2
           break
       }
     },
