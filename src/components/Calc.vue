@@ -17,21 +17,19 @@
     <br>
     <br>
     <br>
-    ???Правильно ли я сделала отображение клавиатуры или есть более простой способ (учитывая, что работаем с чекбоксами)?<br>
     <input type="checkbox" :checked="checked" @click="isChecked">Экранная клавиатура
     <br>
     <br>
     <div class="keyboard" v-show="checked">
       <br>
-      ???Вывод циклом именно такой в методичке задумывался? Хотела сделать через цикл в script, но не получилось. Как это можно было сделать?<br>
        <button v-for="number in numbers" :key="number" @click="symbolChange(number)">
        {{number}}
       </button>
       <button @click="remove">←</button>
       <br>
-      <input type="radio" id="one" value="Первый" v-model="picked">
+      <input type="radio" id="one" value="first" v-model="picked">
       <label for="one">Операнд 1</label>
-      <input type="radio" id="two" value="Второй" v-model="picked">
+      <input type="radio" id="two" value="second" v-model="picked">
       <label for="two">Операнд 2</label>
     </div>
   </div>
@@ -86,10 +84,10 @@ export default {
     },
     symbolChange (symbol) {
       switch (this.picked) {
-        case 'Первый':
+        case 'first':
           this.string1 += symbol
           break
-        case 'Второй':
+        case 'second':
           this.string2 += symbol
           break
       }
@@ -97,10 +95,10 @@ export default {
     remove () {
       this.result = 0
       switch (this.picked) {
-        case 'Первый':
+        case 'first':
           this.string1 = this.string1.slice(0, this.string1.length - 1)
           break
-        case 'Второй':
+        case 'second':
           this.string2 = this.string2.slice(0, this.string2.length - 1)
           break
       }
