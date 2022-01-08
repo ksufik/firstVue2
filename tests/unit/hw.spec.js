@@ -5,6 +5,7 @@ import Calc from '@/components/Calc.vue'
 
 const LocalVue = createLocalVue()
 LocalVue.use(Vuex)
+
 //test suit
 describe('Calculator', () => {
   let wrapper
@@ -26,6 +27,7 @@ describe('Calculator', () => {
   afterEach(() => {
     wrapper.destroy()
   })
+  
   //test
   test('Ввод данных', () => {
     createComponent()
